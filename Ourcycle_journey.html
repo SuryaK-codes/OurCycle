@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurCycle - Journey of Waste</title>
+    <style>
+        /* STANDARDIZED VARIABLES FROM HOMEPAGE */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #2e7d32; 
+            --accent-hover: #1b5e20;
+            --card-bg: #f5f5f5;
+            --banner-bg: #f4f9f4;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            
+            --color-1: #2e7d32;
+            --color-2: #0277bd;
+            --color-3: #f9a825;
+            --color-4: #00897b;
+        }
+
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #F1F8E9; /* Preserved Nature-first Mint background */
+            color: #333;
+            line-height: 1.8;
+            font-family: var(--font-family);
+        }
+
+        /* --- CLEAN & STABLE NAVBAR (FROM HOMEPAGE) --- */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            gap: 30px; 
+        }
+
+        .nav-menu a, .dropbtn {
+            text-decoration: none; 
+            color: #555; 
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            padding: 10px 0;
+        }
+
+        .nav-menu a:hover, .dropdown:hover .dropbtn { 
+            color: var(--accent-color); 
+        }
+
+        .dropdown { position: relative; display: inline-block; }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            z-index: 1001;
+            top: 100%;
+            left: 0;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: 500;
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: #f4f9f4; color: var(--accent-color); }
+
+        /* --- STANDARDIZED HERO SECTION --- */
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 80px 20px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                              url('Ourcycle_journey_images/Ourcycleheader.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-color: #2c3e50;
+        }
+        .hero h1 { font-size: 4.5rem; margin-bottom: 10px; font-weight: 700; line-height: 1.1; }
+        .hero p { font-size: 1.4rem; font-style: italic; opacity: 0.9; max-width: 800px; margin: 0 auto; }
+
+        /* --- PRESERVED JOURNEY CONTENT STYLING --- */
+        .program-link-bar {
+            background-color: #1a4a15;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+        }
+
+        .program-link-bar a {
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-left: 5px;
+        }
+
+        .journey-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .journey-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 120px;
+            gap: 60px;
+        }
+
+        .journey-row:nth-child(even) { flex-direction: row-reverse; }
+
+        .journey-text { flex: 1; }
+
+        .journey-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .journey-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            padding: 10px;
+        }
+
+        .journey-text h3 { font-size: 2.8rem; margin-bottom: 20px; color: #1a4a15; }
+        .journey-text p { font-size: 1.25rem; color: #444; margin-bottom: 20px; }
+        .journey-text a { color: #1a4a15; font-weight: 600; text-decoration: underline; }
+        .journey-text a:hover { color: #2d5a27; }
+
+        .recycle-table-container {
+            margin-top: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .recycle-table { width: 100%; border-collapse: collapse; font-size: 1rem; text-align: left; }
+        .recycle-table thead tr { background-color: #1a4a15; color: #ffffff; }
+        .recycle-table th, .recycle-table td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+        .recycle-table tbody tr:nth-of-type(even) { background-color: #F1F8E9; }
+        .commodity-name { font-weight: bold; color: #1a4a15; }
+
+        /* Mobile Optimization */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 3.2rem; }
+            .journey-row, .journey-row:nth-child(even) { flex-direction: column; text-align: center; }
+            .journey-image { width: 100%; height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- STICKY NAVBAR (FROM HOMEPAGE) -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">OurCycle</a>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">Explore &darr;</button>
+                <div class="dropdown-content">
+                    <a href="Ourcycle_Masterlist.html">Disposal Guide</a>
+                    <a href="Ourcycle_whysort.html">Impact of Sorting</a>
+                    <a href="Ourcycle_journey.html">Journey of Waste</a>
+                    <a href="Ourcycle_communityresource_FINAL.html">Community Resources</a>
+                    <a href="Ourcycle_events.html">Community Events</a>
+                    <a href="Ourcycle_upcycle.html">Fun Upcycling Projects</a>
+                </div>
+            </div>
+            <a href="Ourcycleaboutus.html">About Us</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- STANDARDIZED HERO HEADER -->
+    <header class="hero">
+        <h1>OurCycle</h1>
+        <p>Journey of Waste: Where does our waste go?</p>
+    </header>
+
+    <div class="program-link-bar">
+        Learn About Cambridge's Recycle and Compost Programs from DPW Cambridge 
+        <a href="https://youtu.be/J73s5pJTVNk?si=9d1-PspWFIaE9Z1D" target="_blank">Watch the video here</a>
+    </div>
+
+    <div class="journey-wrapper">
+
+        <section class="journey-row">
+            <div class="journey-image">
+                <img src="Ourcycle_journey_images/OurCycle_journeyofwaste1.png" alt="Journey of Trash">
+            </div>
+            <div class="journey-text">
+                <h3>Journey of Trash</h3>
+                <p>Trash collected from our curbsides is taken to a Boston holding facility. Part of this waste is processed at incinerators (<a href="https://www.reworldwaste.com/" target="_blank">Reworld</a>) in Haverhill, MA, for energy recovery; the rest is transported via rail to landfills in Michigan and Virginia.</p>
+            </div>
+        </section>
+
+        <section class="journey-row">
+            <div class="journey-image">
+                <img src="Ourcycle_journey_images/OurCycle_journeyofwaste2.png" alt="Journey of Recycle">
+            </div>
+            <div class="journey-text">
+                <h3>Journey of Recycle</h3>
+                <p><a href="https://www.casella.com/" target="_blank">Casella</a> hauls recyclables to their Charlestown plant, where a state-of-the-art sorting system categorizes materials into the ten groups. These commodities are then sold to global manufacturers. This process offers a sustainable alternative to traditional disposal by promoting material reuse and significantly reducing waste management overhead. Below is a breakdown of where these commodities go and what they become:</p>
+                
+                <div class="recycle-table-container">
+                    <table class="recycle-table">
+                        <thead>
+                            <tr>
+                                <th>Commodity</th>
+                                <th>End Site</th>
+                                <th>New Product</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="commodity-name">Paper/Cardboard</td>
+                                <td>NY, ME, India, Vietnam</td>
+                                <td>Cardboard, tissues, paper towels</td>
+                            </tr>
+                            <tr>
+                                <td class="commodity-name">Plastics</td>
+                                <td>NY, PA, AL</td>
+                                <td>Toys, furniture, food containers</td>
+                            </tr>
+                            <tr>
+                                <td class="commodity-name">Aluminum</td>
+                                <td>NY</td>
+                                <td>Beer or soda cans</td>
+                            </tr>
+                            <tr>
+                                <td class="commodity-name">Tin Cans</td>
+                                <td>PA</td>
+                                <td>Steel cans or bicycles</td>
+                            </tr>
+                            <tr>
+                                <td class="commodity-name">Glass</td>
+                                <td>MA</td>
+                                <td>Road or building construction</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="journey-row">
+            <div class="journey-image">
+                <img src="Ourcycle_journey_images/OurCycle_journeyofwaste3.png" alt="Journey of Compost">
+            </div>
+            <div class="journey-text">
+                <h3>Journey of Compost</h3>
+                <p>Food waste is hauled to the <a href="https://www.wmsolutions.com/locations/details/id/1120" target="_blank">WM CORe facility</a> in Charlestown, where it is processed into a slurry with the consistency of oatmeal. This organic material is then transported to the <a href="https://glsd.org/" target="_blank">Greater Lawrence Sanitary District (GLSD)</a>, where it undergoes anaerobic digestion alongside municipal wastewater. This process generates methane gas, which is captured to produce electricity and heat. Finally, the remaining biosolids are dried and sold as a byproduct.</p>
+            </div>
+        </section>
+
+        <section class="journey-row">
+            <div class="journey-image">
+                <img src="Ourcycle_journey_images/OurCycle_journeyofwaste4.png" alt="Journey of Yard Waste">
+            </div>
+            <div class="journey-text">
+                <h3>Journey of Yard Waste</h3>
+                <p>Yard waste and Christmas trees are hauled to Landscape Express in Woburn or West Roxbury, or to Save That Stuff in Brockton, to be composted. The resulting compost is sold to landscapers and other soil users to offset waste management costs. Additionally, Save That Stuff provides 30 tons of finished compost back to the City annually. Each spring, the City hosts a compost giveaway for residents, while the Forestry Division uses the material to plant new trees and maintain its three nurseries. This process exemplifies a circular economy, returning local yard waste to the community as a valuable resource.</p>
+            </div>
+        </section>
+
+        <section class="journey-row">
+            <div class="journey-image">
+                <img src="Ourcycle_journey_images/OurCycle_journeyofwaste5.png" alt="Journey of Others">
+            </div>
+            <div class="journey-text">
+                <h3>Journey of Others</h3>
+                <p>Specialty items like textiles, electronics, and household hazardous materials are managed through dedicated programs. <a href="https://utecinc.org/" target="_blank">UTEC</a>, a nonprofit serving high-risk young adults, provides mattress recycling by 'fileting' them to separate and sell the metal, foam, and cotton to global manufacturers. Used textiles and shoes collected from <a href="https://www.helpsy.com/" target="_blank">Helpsy</a> (a certified B Corp) bins are sorted at their regional facility; high-quality items are resold internationally, while others are sent to recyclers for repurposing. Finally, electronics dropped off at the recycling center are handled by <a href="https://goodpointrecycling.net/" target="_blank">Good Point Recycling</a>, where components are salvaged for repair or reuse before the remaining materials are recycled.</p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

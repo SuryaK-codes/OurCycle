@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurCycle - Fun Upcycling Projects</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #2e7d32; 
+            --accent-hover: #1b5e20;
+            --card-bg: #f9fbf9;
+            --banner-bg: #f4f9f4;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --earth-green: #2e7d32;
+            --earth-brown: #6d4c41;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-family); line-height: 1.6; color: var(--text-color); background-color: var(--bg-color); }
+
+/* --- CLEAN & STABLE NAVBAR --- */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0; /* Tightened padding */
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.nav-menu { 
+    display: flex; 
+    align-items: center; 
+    gap: 30px; 
+}
+
+/* Base link styles */
+.nav-menu a, .dropbtn {
+    text-decoration: none; 
+    color: #555; 
+    font-weight: 600; 
+    font-size: 0.95rem; 
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 10px 0; /* Vertical padding creates a bigger hover area */
+}
+
+.nav-menu a:hover, .dropdown:hover .dropbtn { 
+    color: var(--accent-color); 
+}
+
+/* DROPDOWN BOX */
+.dropdown { 
+    position: relative; 
+    display: inline-block; 
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 240px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    z-index: 1001;
+    top: 100%; /* Sits exactly at the bottom of the button area */
+    left: 0;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+/* This makes the menu appear and STAY because there is no gap */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: 500;
+}
+
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { 
+    background-color: #f4f9f4; 
+    color: var(--accent-color); 
+}
+
+/* Fix for sticky header overlap */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+        /* 1. TOP BANNER */
+        .banner {
+            text-align: center;
+            color: white;
+            padding: 100px 20px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('Ourcycle_upcycle_images/upcycling-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .banner h1 { font-size: 3.5rem; margin-bottom: 15px; font-weight: 800; }
+        .banner p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto; font-style: italic; }
+
+        /* 2. INTRO CONTAINER */
+        .intro-container {
+            max-width: 1100px;
+            margin: 60px auto 20px;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .intro-container h2 { color: var(--earth-green); margin-bottom: 15px; font-size: 2.4rem; font-weight: 800; }
+
+        /* 3. FULL-WIDTH FIXED SECTIONS */
+        .full-width-section {
+            width: 100%;
+            padding: 80px 20px;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-bottom: 2px solid #e2ede2;
+        }
+
+        /* TINTED OVERLAYS (HOMEPAGE STYLE) */
+        .bg-household { background-image: linear-gradient(rgba(244, 249, 244, 0.85), rgba(244, 249, 244, 0.85)), url('Ourcycle_upcycle_images/household-bg.jpg'); }
+        .bg-wearables { background-image: linear-gradient(rgba(244, 249, 244, 0.85), rgba(244, 249, 244, 0.85)), url('Ourcycle_upcycle_images/wearables-bg.jpg'); }
+        .bg-engineering { background-image: linear-gradient(rgba(244, 249, 244, 0.85), rgba(244, 249, 244, 0.85)), url('Ourcycle_upcycle_images/engineering-bg.jpg'); }
+        .bg-kids { background-image: linear-gradient(rgba(244, 249, 244, 0.85), rgba(244, 249, 244, 0.85)), url('Ourcycle_upcycle_images/kids-bg.jpg'); }
+
+        .category-wrapper { max-width: 1100px; margin: 0 auto; }
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--earth-brown);
+            border-left: 6px solid var(--earth-green);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        /* 4. RESOURCE CARD GRID */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.02);
+        }
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0px rgba(46, 125, 50, 0.05);
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            background: #e8ede8;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            color: var(--earth-green);
+            letter-spacing: 1px;
+        }
+
+        .resource-card h4 { font-size: 1.4rem; margin-bottom: 12px; color: var(--text-color); }
+        .resource-card p { font-size: 1rem; color: #555; margin-bottom: 25px; line-height: 1.5; }
+
+        .btn-visit {
+            text-align: center;
+            padding: 12px;
+            background-color: var(--earth-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+        .btn-visit:hover { background-color: var(--accent-hover); }
+
+        @media (max-width: 768px) {
+            .banner h1 { font-size: 2.6rem; }
+            .resource-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">OurCycle</a>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">Explore &darr;</button>
+                <div class="dropdown-content">
+                    <a href="Ourcycle_Masterlist.html">Disposal Guide</a>
+                    <a href="Ourcycle_whysort.html">Impact of Sorting</a>
+                    <a href="Ourcycle_journey.html">Journey of Waste</a>
+                    <a href="Ourcycle_communityresource_FINAL.html">Community Resources</a>
+                    <a href="Ourcycle_events.html">Community Events</a>
+                    <a href="Ourcycle_upcycle.html">Fun Upcycling Projects</a>
+                </div>
+            </div>
+            <a href="Ourcycleaboutus.html">About Us</a>
+        </div>
+    </div>
+</nav>
+
+    <header class="banner">
+        <h1>Fun Upcycling Projects</h1>
+        <p>Turning yesterday's waste into today's treasures.</p>
+    </header>
+
+    <div class="intro-container">
+        <h2>Choose Your Project</h2>
+        <p>Select a category below to discover free guides for giving old items a new purpose.</p>
+    </div>
+
+    <section class="full-width-section bg-household">
+        <div class="category-wrapper">
+            <h3 class="category-title">Give Household Items New Life</h3>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Interior Flip</span>
+                        <h4>Apartment Therapy</h4>
+                        <p>Access hundreds of "Before & After" furniture projects, painting techniques, and reupholstering ideas.</p>
+                    </div>
+                    <a href="https://www.apartmenttherapy.com/features/first-furniture-flip" class="btn-visit" target="_blank">View Projects</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Organization</span>
+                        <h4>Glass Jar Homesteading</h4>
+                        <p>Creative ways to repurpose pasta sauce and mason jars into pantry organizers and herb stations.</p>
+                    </div>
+                    <a href="https://www.thespruce.com/search?q=Glass+Jar+Homesteading" class="btn-visit" target="_blank">Get Ideas</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Quick Update</span>
+                        <h4>Chalk Paint for New Look</h4>
+                        <p>Learn how to use Chalk Paint to transform outdated furniture with almost no sanding or priming required.</p>
+                    </div>
+                    <a href="https://www.anniesloan.com/us/techniques/how-to-use-chalk-paint-by-annie-sloan-a-beginners-guide/" class="btn-visit" target="_blank">View Guide</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Garden</span>
+                        <h4>Thrift Store Planter Flips</h4>
+                        <p>Turn old colanders, boots, and vintage tins into unique garden planters instead of buying plastic.</p>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=PwbVRtt0-qk" class="btn-visit" target="_blank">Watch Tutorial</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Upholstery</span>
+                        <h4>Reupholster your furniture</h4>
+                        <p>Affordable ways to refresh fabric and padding to extend the life of your favorite seating.</p>
+                    </div>
+                    <a href="https://www.apartmenttherapy.com/cheap-ways-to-reupholster-furniture-261782" class="btn-visit" target="_blank">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="full-width-section bg-wearables">
+        <div class="category-wrapper">
+            <h3 class="category-title">Upcycled Wearables</h3>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Visible Mending</span>
+                        <h4>My Mending Basket</h4>
+                        <p>Learn Japanese Sashiko and darning techniques to turn rips in clothing into beautiful art.</p>
+                    </div>
+                    <a href="https://www.wastefreeplanet.org/blog/how-to-mend-your-jeans-using-sashiko-stitching" class="btn-visit" target="_blank">Learn Mending</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Fabric Reuse</span>
+                        <h4>Fabric Scrap Crafts</h4>
+                        <p>Create beeswax wraps, braided rag rugs, or zero-waste tote bags from old linens.</p>
+                    </div>
+                    <a href="https://sustainmycrafthabit.com/" class="btn-visit" target="_blank">Start Stitching</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">DIY Style</span>
+                        <h4>Tie Dye an Old T-shirt</h4>
+                        <p>Give your old whites a new life with this simple guide to vibrant, creative tie-dye patterns.</p>
+                    </div>
+                    <a href="https://www.instructables.com/How-to-tie-dye-an-old-white-shirt-or-a-new-shirt-/" class="btn-visit" target="_blank">View Tutorial</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Jewelry</span>
+                        <h4>Upcycled Jewelry</h4>
+                        <p>Explore using uncommon materials like soda cans and discarded hardware to create wearable art.</p>
+                    </div>
+                    <a href="https://upcycledesignlab.com/use-these-6-uncommon-things-to-make-upcycled-jewelry/" class="btn-visit" target="_blank">View Tutorial</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Pottery Art</span>
+                        <h4>Kintsugi: Repair Broken Pottery</h4>
+                        <p>The traditional art of repairing broken ceramics with gold resin to highlight their history.</p>
+                    </div>
+                    <a href="https://thegreenmadhouse.com/diy/how-to-repair-your-broken-ceramics-with-kintsugi" class="btn-visit" target="_blank">Learn Kintsugi</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Local Resource</span>
+                        <h4>CPL's HIVE: Textiles</h4>
+                        <p>Visit the Cambridge Public Library makerspace for sewing machine access and textile workshops.</p>
+                    </div>
+                    <a href="https://www.cambridgema.gov/Departments/cambridgepubliclibrary/Locations/mainlibrary/thehive" class="btn-visit" target="_blank">Visit The Hive</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="full-width-section bg-engineering">
+        <div class="category-wrapper">
+            <h3 class="category-title">Upcycled Art & Engineering</h3>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Maker Projects</span>
+                        <h4>Instructables Upcycling</h4>
+                        <p>Explore thousands of user-submitted projects for metal, wood, and plastic repurposing.</p>
+                    </div>
+                    <a href="https://www.instructables.com/living/upcycling/projects/" class="btn-visit" target="_blank">Explore Makers</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Tech Repair</span>
+                        <h4>iFixit Manuals</h4>
+                        <p>The definitive guide to keeping electronics out of the landfill with free repair manuals.</p>
+                    </div>
+                    <a href="https://www.ifixit.com" class="btn-visit" target="_blank">Fix Your Tech</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Community</span>
+                        <h4>Cambridge Fixing Community</h4>
+                        <p>Join this local group to share tools and advice for fixing appliances and furniture.</p>
+                    </div>
+                    <a href="https://www.facebook.com/CambridgeFixingRepairingCommunity/" class="btn-visit" target="_blank">Join Group</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Mosaic Art</span>
+                        <h4>Broken Glass Art</h4>
+                        <p>Discover mosaic inspiration for turning broken glass into stunning decorative pieces.</p>
+                    </div>
+                    <a href="https://www.pinterest.com/bammy3535/broken-glass-crafts/" class="btn-visit" target="_blank">See Gallery</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Equipment</span>
+                        <h4>CPL's HIVE: Makerspace</h4>
+                        <p>Access 3D printers and laser cutters at the Cambridge Public Library for your projects.</p>
+                    </div>
+                    <a href="https://www.cambridgema.gov/Departments/cambridgepubliclibrary/Locations/mainlibrary/thehive" class="btn-visit" target="_blank">Explore The Hive</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Metalwork</span>
+                        <h4>Scrap Metal Masterpieces</h4>
+                        <p>Guide on how to safely source and use hardware and metal scraps for industrial decor.</p>
+                    </div>
+                    <a href="https://www.alliedsalvagemetals.ca/creative-upcycling-diy-with-scrap-metal/" class="btn-visit" target="_blank">View Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="full-width-section bg-kids">
+        <div class="category-wrapper">
+            <h3 class="category-title">Kids Projects with Recyclables</h3>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">STEM Learning</span>
+                        <h4>STEM Challenges</h4>
+                        <p>Engaging challenges using recyclables to build bridges, rockets, and towers.</p>
+                    </div>
+                    <a href="https://frugalfun4boys.com/awesome-stem-challenges/" class="btn-visit" target="_blank">Start Challenges</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Engineering</span>
+                        <h4>Cardboard Engineering</h4>
+                        <p>Transform cereal boxes and delivery packages into playhouses and marble runs.</p>
+                    </div>
+                    <a href="https://www.sciencebuddies.org/stem-activities?s=cardboard" class="btn-visit" target="_blank">Browse Crafts</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Visual Gallery</span>
+                        <h4>Kids Recycle Art Projects</h4>
+                        <p>Inspiration for turning everyday recycling into beautiful home art projects.</p>
+                    </div>
+                    <a href="https://www.pinterest.com/search/pins/?q=recycle%20art%20projects%20for%20kids" class="btn-visit" target="_blank">See Pinterest</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Science Lab</span>
+                        <h4>Plastic Bottle Discovery Lab</h4>
+                        <p>STEM experiments like tornado bottles and self-watering planters using plastic waste.</p>
+                    </div>
+                    <a href="https://www.bottlestore.com/plastic-bottle-crafts-for-kids" class="btn-visit" target="_blank">Start Lab</a>
+                </div>
+                <div class="resource-card">
+                    <div>
+                        <span class="card-tag">Creative Play</span>
+                        <h4>Upcycle Toys</h4>
+                        <p>Turning everyday household objects into fun, imaginative new toys and games.</p>
+                    </div>
+                    <a href="https://www.pinterest.com/draryashruti/upcycle-toys/" class="btn-visit" target="_blank">See Ideas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

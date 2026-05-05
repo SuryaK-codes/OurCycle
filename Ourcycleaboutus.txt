@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | OurCycle Cambridge</title>
+    <style>
+        /* Global Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f4f9f4; /* Consistent pale green */
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- STYLED LINKS FOR ABOUT US --- */
+        /* This ensures your new links stay the same color as the text */
+        .text-column a, .intro-section a, .ack-section a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: bold; /* Keeps the "bold" look of the original text */
+        }
+
+        .text-column a:hover, .intro-section a:hover, .ack-section a:hover {
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+/* --- CLEAN & STABLE NAVBAR --- */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0; /* Tightened padding */
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.nav-menu { 
+    display: flex; 
+    align-items: center; 
+    gap: 30px; 
+}
+
+/* Base link styles */
+.nav-menu a, .dropbtn {
+    text-decoration: none; 
+    color: #555; 
+    font-weight: 600; 
+    font-size: 0.95rem; 
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 10px 0; /* Vertical padding creates a bigger hover area */
+}
+
+.nav-menu a:hover, .dropdown:hover .dropbtn { 
+    color: var(--accent-color); 
+}
+
+/* DROPDOWN BOX */
+.dropdown { 
+    position: relative; 
+    display: inline-block; 
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 240px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    z-index: 1001;
+    top: 100%; /* Sits exactly at the bottom of the button area */
+    left: 0;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+/* This makes the menu appear and STAY because there is no gap */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: 500;
+}
+
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { 
+    background-color: #f4f9f4; 
+    color: var(--accent-color); 
+}
+
+/* Fix for sticky header overlap */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+
+        /* Central Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header / Banner Section */
+        .about-header {
+            width: 100%;
+            height: 300px;
+/* This adds a dark green wash (0.7 opacity) to make white text pop */
+    background-image: linear-gradient(rgba(20, 54, 22, 0.5), rgba(20, 54, 22, 0.5)), url('Ourcycle_AboutUs_Images/AboutUsbanner.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 5px solid #2e7d32;
+            margin-bottom: 20px;
+        }
+
+       .header-overlay h1 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Clean, modern font */
+    color: #FFFFFF; /* The specific brand green used on the homepage */
+    font-size: 4.5rem;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: -1px; /* Optional: gives it that tight, professional header look */
+}
+     h2, h3 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #2e7d32; /* Keeps the green consistent throughout the page */
+}
+
+        /* Mission & Project Sections */
+        .intro-section {
+            margin-bottom: 40px;
+        }
+
+        /* Team Section Styles */
+        .team-title {
+            text-align: center;
+            margin: 60px 0 30px;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-lead-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            border-top: 8px solid #2e7d32; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            width: 100%;
+        }
+
+        .team-content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        /* FIXED PHOTO COLUMN WIDTH */
+        .photo-column {
+            width: 200px; 
+            flex-basis: 200px;
+            flex-shrink: 0; /* Prevents the column from getting smaller */
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 200px !important; /* Explicitly forced size */
+            height: 200px !important; 
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #f4f9f4;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        .text-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Radha's Subtext Styling */
+        .mentor-subtext {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .mentor-name {
+            font-weight: bold;
+            color: #999999;
+            font-size: 1rem;
+        }
+
+        /* Acknowledgments Section */
+        .ack-section {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 50px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .ack-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ack-list li {
+            margin-bottom: 18px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .ack-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #2e7d32;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* Logo Row */
+        .logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin-top: 60px;
+            opacity: 0.8;
+            padding-bottom: 40px;
+        }
+
+        .partner-logo {
+            height: 70px;
+            width: auto;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .team-content-wrapper {
+                justify-content: center;
+            }
+            .photo-column {
+                margin-bottom: 20px;
+            }
+            .text-column {
+                text-align: center;
+            }
+            .mentor-subtext {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo"><span style="color: green;">OurCycle</span></a>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">Explore &darr;</button>
+                <div class="dropdown-content">
+                    <a href="Ourcycle_Masterlist.html">Disposal Guide</a>
+                    <a href="Ourcycle_whysort.html">Impact of Sorting</a>
+                    <a href="Ourcycle_journey.html">Journey of Waste</a>
+                    <a href="Ourcycle_communityresource_FINAL.html">Community Resources</a>
+                    <a href="Ourcycle_events.html">Community Events</a>
+                    <a href="Ourcycle_upcycle.html">Fun Upcycling Projects</a>
+                </div>
+            </div>
+            <a href="Ourcycleaboutus.html">About Us</a>
+        </div>
+    </div>
+</nav>
+
+
+    <header class="about-header">
+        <div class="header-overlay">
+            <h1 style="margin:0;">About OurCycle</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="intro-section">
+            <h2>Our Mission</h2>
+            <p>At <strong>OurCycle</strong>, we believe that the path to a sustainable, zero-waste future begins with transforming unconscious daily habits into intentional, creative routines. Driven by a deep concern for climate change, our mission is to provide Cambridge residents with the precise knowledge and inspiration needed to turn household waste into valuable recoverable resources.</p>
+            
+            <h2>The Project</h2>
+            <p>What started as a student-led community project developed within the framework of the <strong><a href="https://lti.mit.edu/home" target="_blank" rel="noopener noreferrer">MIT Leadership Training Program</a></strong> by a <strong><a href="https://crls.cpsd.us/" target="_blank" rel="noopener noreferrer">Cambridge Rindge and Latin School</a></strong> student has evolved into a comprehensive community resource. <strong>OurCycle</strong> is an independent initiative designed to bridge the gap between scientific waste-stream analysis and everyday household actions. Our goal is to create a centralized, user-friendly "masterlist" that clarifies Cambridge’s specific recycling and composting systems.</p>
+        </section>
+
+        <h2 class="team-title">The Team</h2>
+
+        <section class="team-container">
+            <div class="team-lead-card">
+                <div class="team-content-wrapper">
+                    
+                    <!-- Left Column: Photo (Fixed size) -->
+                    <div class="photo-column">
+                        <img src="Ourcycle_AboutUs_Images/surya_photo.png" alt="Surya" class="profile-photo">
+                    </div>
+
+                    <!-- Right Column: Profiles -->
+                    <div class="text-column">
+                        <h3 style="margin-top: 0;">Surya Kumar</h3>
+                        <p><strong>Prime Architect & The Mastermind</strong></p>
+                        <p>Surya is a student at <strong><a href="https://crls.cpsd.us/" target="_blank" rel="noopener noreferrer">Cambridge Rindge and Latin School</a></strong> (CRLS) and a lifelong resident of Cambridge. Having been part of the Cambridge Public School system since the beginning—attending the <strong><a href="https://morse.cpsd.us/" target="_blank" rel="noopener noreferrer">Morse School</a></strong>, <strong><a href="https://putnamavenue.cpsd.us/" target="_blank" rel="noopener noreferrer">Putnam Avenue Upper School (PAUS)</a></strong>, and now <strong><a href="https://crls.cpsd.us/" target="_blank" rel="noopener noreferrer">Cambridge Rindge and Latin School</a></strong>—he is deeply rooted in this community.</p>
+                        
+                        <p>Surya has a lifelong commitment to environmental sustainability and engineering, with a long-term goal of pursuing a career in sustainable design and environmental engineering. His journey began early in elementary school, exploring biomimicry and nature-based design in summer programs—an interest that was further fueled in middle and high school by environmental education in science clubs and electives. As a dedicated member of student government, sustainability development club and the Model UN at CRLS, Surya is passionate about the intersection of technology and civic engagement. Through <strong>OurCycle</strong>, he combines his training from the <strong><a href="https://lti.mit.edu/home" target="_blank" rel="noopener noreferrer">MIT Leadership Training Institute</a></strong> with years of actively seeking knowledge to show that small, personal actions can spark a generational movement to protect our shared home planet.</p>
+
+                        <!--Radha: Aligned under Surya's text -->
+                        <div class="mentor-subtext">
+                            <span class="mentor-name">Technical Mentor: Plachikkat Radha</span> | 
+                            Radha is a long-term Cambridge resident and parent of Surya, a scientist and an analytical chemist. She brings a scientist’s rigor to the project. Radha applies her expertise in complex systems to ensure that <strong>OurCycle</strong> serves as a high-performance tool for the circular economy, providing the technical foundation needed to ensure valuable resources are recovered rather than sent to landfills.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="ack-section">
+            <h2>Acknowledgments</h2>
+            <p>We are deeply grateful to the mentors and community members who have provided their time and expertise to help bring <strong>OurCycle</strong> to life:</p>
+            <ul class="ack-list">
+                <li><strong>Ms. Newton (Physics Teacher & Lead, CRLS Sustainability Development Club):</strong> For her invaluable guidance during the initial brainstorming phases and for helping us define the project's core environmental focus.</li>
+                <li><strong>Mr. Andrew (Computer Science Teacher, <a href="https://rsta.cpsd.us/" target="_blank" rel="noopener noreferrer">RSTA at CRLS</a>):</strong> For his technical mentorship, programming pointers, and for introducing us to the AI tools that helped streamline our development process.</li>
+                <li><strong>The CRLS Sustainability Development Club:</strong> To Surya's fellow students at <strong><a href="https://crls.cpsd.us/" target="_blank" rel="noopener noreferrer">Cambridge Rindge and Latin School</a></strong>, whose peer reviews and feedback ensured the website remains accessible and relevant to our generation.</li>
+                <li><strong>The City of Cambridge:</strong> Special thanks to <strong>Mr. Michael Orr (Recycling Director, City of Cambridge)</strong> for reviewing our content to ensure alignment with municipal sustainability efforts and data accuracy.</li>
+            </ul>
+        </section>
+
+        <!-- Partner Logos Area -->
+        <div class="logo-row">
+            <img src="Ourcycle_AboutUs_Images/MIT_LTI_Logo.png" alt="MIT LTI Logo" class="partner-logo">
+            <img src="Ourcycle_AboutUs_Images/CRLS_Logo.png" alt="CRLS Logo" class="partner-logo">
+        </div>
+
+    </main>
+
+</body>
+</html>

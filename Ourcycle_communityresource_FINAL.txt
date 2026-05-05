@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurCycle - Community Resources</title>
+    <style>
+/* --- CLEAN & STABLE NAVBAR --- */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0; /* Tightened padding */
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.nav-menu { 
+    display: flex; 
+    align-items: center; 
+    gap: 30px; 
+}
+
+/* Base link styles */
+.nav-menu a, .dropbtn {
+    text-decoration: none; 
+    color: #555; 
+    font-weight: 600; 
+    font-size: 0.95rem; 
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 10px 0; /* Vertical padding creates a bigger hover area */
+}
+
+.nav-menu a:hover, .dropdown:hover .dropbtn { 
+    color: var(--accent-color); 
+}
+
+/* DROPDOWN BOX */
+.dropdown { 
+    position: relative; 
+    display: inline-block; 
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 240px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    z-index: 1001;
+    top: 100%; /* Sits exactly at the bottom of the button area */
+    left: 0;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+/* This makes the menu appear and STAY because there is no gap */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: 500;
+}
+
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { 
+    background-color: #f4f9f4; 
+    color: var(--accent-color); 
+}
+
+/* Fix for sticky header overlap */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #F1F8E9; /* Mint Background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Banner with Refined Blur */
+        .banner {
+            position: relative;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-align: center;
+            color: white;
+        }
+
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+                        url('Ourcycle_communityresources_images/Ourcycle_communityresource1.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(1px); 
+            transform: scale(1.05);
+            z-index: -1;
+        }
+
+        .banner-content h1 { font-size: 4.5rem; text-shadow: 2px 2px 12px rgba(0,0,0,0.6); font-weight: 800; }
+        .banner-content h2 { font-size: 1.8rem; font-weight: 300; opacity: 0.95; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+
+        .category-section { margin-bottom: 70px; }
+        .category-title {
+            font-size: 1.6rem;
+            color: #1a4a15;
+            border-left: 6px solid #1a4a15;
+            padding-left: 20px;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* Warm Beige Cards */
+        .resource-card {
+            background: #F5F5DC;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #E8E8D0;
+        }
+
+        .resource-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
+
+        .card-logo-area {
+            height: 130px;
+            background-color: #EEEED1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .resource-logo {
+	    max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .card-content { padding: 25px; flex-grow: 1; }
+        .card-content h3 a { color: #1a4a15; text-decoration: none; font-size: 1.35rem; display: block; margin-bottom: 12px; font-weight: 700; }
+        .card-content h3 a:hover { color: #2e7d32; text-decoration: underline; }
+        .card-content p { color: #444; font-size: 1rem; }
+
+        .search-tool {
+            background: #1f3c1c; color: white; padding: 45px;
+            border-radius: 20px; text-align: center; margin-top: 40px;
+        }
+        .search-tool a { color: #F1F8E9; font-weight: bold; text-decoration: underline; font-size: 1.25rem; }
+
+        @media (max-width: 768px) {
+            .banner h1 { font-size: 2.8rem; }
+            .resource-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo"><span style="color: green;">OurCycle</span></a>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">Explore &darr;</button>
+                <div class="dropdown-content">
+                    <a href="Ourcycle_Masterlist.html">Disposal Guide</a>
+                    <a href="Ourcycle_whysort.html">Impact of Sorting</a>
+                    <a href="Ourcycle_journey.html">Journey of Waste</a>
+                    <a href="Ourcycle_communityresource_FINAL.html">Community Resources</a>
+                    <a href="Ourcycle_events.html">Community Events</a>
+                    <a href="Ourcycle_upcycle.html">Fun Upcycling Projects</a>
+                </div>
+            </div>
+            <a href="Ourcycleaboutus.html">About Us</a>
+        </div>
+    </div>
+</nav>
+
+    <header class="banner">
+        <div class="banner-content">
+            <h1>OurCycle</h1>
+            <h2>Community Resources</h2>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section class="category-section">
+            <h2 class="category-title">Social Media Resources</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/buynothinglogo.jpeg" alt="Buy Nothing" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://www.facebook.com/groups/784012691611923/" target="_blank">Buy Nothing Cambridge</a></h3>
+                        <p>Highly active local groups for community. Rehome items and get to know your community.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/nextdoorlogo.png" alt="NextDoor" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://nextdoor.com/city/cambridge--ma/" target="_blank">NextDoor Cambridge</a></h3>
+                        <p>Useful for local, rapid donation or selling.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/craigslistlogo.png" alt="Craigslist" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://boston.craigslist.org/" target="_blank">Craigslist</a></h3>
+                        <p>Online selling/buying platform.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/freecyclelogo.png" alt="FreeCycle" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://www.freecycle.org/town/CambridgeMA" target="_blank">FreeCycle</a></h3>
+                        <p>Environmental friendly donations within the community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-section">
+            <h2 class="category-title">Donation Drop-off & Thrift Stores</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/boomerangslogo.jpeg" alt="Boomerangs" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://shop.mtwyouth.org/" target="_blank">Boomerangs by More Than Words</a></h3>
+                        <p>Thrift store empowering at-risk youth by taking charge of business.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/goodwilllogo.png" alt="Goodwill" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://www.goodwillmass.org/" target="_blank">Goodwill Stores</a></h3>
+                        <p>Nonprofit retail thrift center at 520 Massachusetts Ave, Cambridge.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/salvationarmylogo.png" alt="Salvation Army" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://satruck.org/"target="_blank">Salvation Army</a></h3>
+                        <p>Thrift shops where proceeds fund Adult Rehabilitation Centers.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/solutionsatworklogo.png" alt="Solutions At Work" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://solutionsatwork.org/" target="_blank">Solutions At Work</a></h3>
+                        <p>Providing clothes and essentials to low-income and homeless people in Cambridge.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/mitXlogo.jpg" alt="MIT" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://fx.mit.edu/" target="_blank">MIT Furniture Exchange</a></h3>
+                        <p>Donate furniture while supporting MIT scholarships.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/harvardcenterlogo.png" alt="Harvard" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://www.energyandfacilities.harvard.edu/facilities-services/recycling-waste-management/recycling-and-surplus-center" target="_blank">Harvard Surplus Center</a></h3>
+                        <p>Open Thursdays 10am-1pm; free items on a first-come, first-served basis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-section">
+            <h2 class="category-title">Donation Pickup Organizations</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/bbbslogo.png" alt="BBBS" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://www.bbbsfoundation.org/" target="_blank">Big Brother Big Sister</a></h3>
+                        <p>Picks up clothing and small household items right from your door steps.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/epilepsylogo.png" alt="Epilepsy Foundation" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://epilepsynewengland.org/donations-center" target="_blank">Epilepsy Foundation of NE</a></h3>
+                        <p>Collects clothing and household goods from curbside.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/resupplylogo.png" alt="Resupply" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://resupplyme.com/" target="_blank">Resupply</a></h3>
+                        <p>Partners with charities to pick up furniture and bulk items.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/furnishinghopemalogo.png" alt="Furnishing Hope" class="resource-logo"></div>
+                    <div class="card-content">
+                       <h3><a href="https://www.furnishinghopema.org/" target="_blank">Furnishing Hope MA</a></h3>
+                        <p>Accepts furniture donation.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/habitatlogo.png" alt="Habitat" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://habitatboston.org/restore/" target="_blank">Habitat for Humanity</a></h3>
+                        <p>Picks up furniture and building materials from curbside.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-section">
+            <h2 class="category-title">City Programs</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/helpsylogo.png" alt="Helpsy" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://www.helpsy.com/find-a-bin" target="_blank">Helpsy Bins</a></h3>
+                        <p>Donate used clothes and shoes in any condition.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/cambridgerecyclinglogo.png" alt="Recycling Center" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://www.cambridgema.gov/services/recyclingcenter" target="_blank">Recycling Center Drop-offs</a></h3>
+                        <p>E-waste, electronics, books, toys and much more.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/communityfridgelogo.jpeg" alt="Community Fridge" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://www.instagram.com/cambridgefridge/" target="_blank">Cambridge Community Fridge</a></h3>
+                        <p>Community driven food fridge. Donate or pickup.</p>
+                    </div>
+                </div>
+                <div class="resource-card">
+                    <div class="card-logo-area"><img src="Ourcycle_communityresources_images/littlelibrarylogo.jpeg" alt="Little Libraries" class="resource-logo"></div>
+                    <div class="card-content">
+                        <h3><a href="https://littlefreelibrary.org/map/" target="_blank">Little Free Libraries</a></h3>
+                        <p>Drop a box, pick a book. All across Cambridge.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="search-tool">
+            <p>For an itemized searchable map of donation sites near Cambridge:</p>
+            <br>
+            <a href="https://recyclesmartma.org/beyond-the-bin-search/" target="_blank">Visit RecycleSmartMA "Beyond The Bin" Search</a>
+        </div>
+    </div>
+</body>
+</html>

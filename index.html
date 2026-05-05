@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurCycle - Turning Daily Choices into Climate Solutions</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #2e7d32; 
+            --accent-hover: #1b5e20;
+            --card-bg: #f5f5f5;
+            --banner-bg: #f4f9f4;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            
+            --color-1: #2e7d32;
+            --color-2: #0277bd;
+            --color-3: #f9a825;
+            --color-4: #00897b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-family); line-height: 1.6; color: var(--text-color); background-color: var(--bg-color); }
+
+/* --- CLEAN & STABLE NAVBAR --- */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0; /* Tightened padding */
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.nav-menu { 
+    display: flex; 
+    align-items: center; 
+    gap: 30px; 
+}
+
+/* Base link styles */
+.nav-menu a, .dropbtn {
+    text-decoration: none; 
+    color: #555; 
+    font-weight: 600; 
+    font-size: 0.95rem; 
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 10px 0; /* Vertical padding creates a bigger hover area */
+}
+
+.nav-menu a:hover, .dropdown:hover .dropbtn { 
+    color: var(--accent-color); 
+}
+
+/* DROPDOWN BOX */
+.dropdown { 
+    position: relative; 
+    display: inline-block; 
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 240px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    z-index: 1001;
+    top: 100%; /* Sits exactly at the bottom of the button area */
+    left: 0;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+/* This makes the menu appear and STAY because there is no gap */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: 500;
+}
+
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { 
+    background-color: #f4f9f4; 
+    color: var(--accent-color); 
+}
+
+/* Fix for sticky header overlap */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+/* This targets only the links inside the program-line span */
+.program-line a {
+    color: inherit;         /* Takes the color from the parent span */
+    text-decoration: none;  /* Removes the default blue underline */
+    font-weight: inherit;   /* Keeps the same thickness as the surrounding text */
+    cursor: pointer;        /* Ensures the mouse still turns into a hand icon */
+}
+
+/* Optional: Adds a subtle effect only when someone hovers over these specific links */
+.program-line a:hover {
+    text-decoration: underline; 
+    opacity: 0.8;
+}
+
+        /* 1. HERO SECTION */
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 80px 20px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Ourcycle_homepage_Images/cambridge-panorama.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: #2c3e50;
+        }
+        .hero h1 { font-size: 4.5rem; margin-bottom: 10px; font-weight: 700; line-height: 1.1; }
+        .hero p { font-size: 1.4rem; font-style: italic; opacity: 0.9; max-width: 800px; margin: 0 auto; }
+
+        /* 2. DISPOSAL GUIDE (WIDGET) WITH BACKGROUND IMAGE */
+        .selection-section {
+            width: 100%;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            background-image: linear-gradient(rgba(244, 249, 244, 0.85), rgba(244, 249, 244, 0.85)), url('Ourcycle_homepage_Images/Ourcycle_widgetbackground.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-bottom: 2px solid #e2ede2;
+        }
+
+        .selection-wrapper {
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .selection-header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* NEW STUDENT CONTEXT STYLES */
+        .project-context {
+            max-width: 850px;
+            margin-bottom: 20px;
+        }
+        .program-line {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #0277bd;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .individual-summary {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .about-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-bottom: 1px solid transparent;
+            transition: border 0.3s;
+        }
+        .about-link:hover { border-bottom: 1px solid var(--accent-color); }
+
+        .selection-promo-text { font-size: 2.6rem; font-weight: 800; color: var(--accent-color); }
+        
+        .image-cta-container { position: relative; display: inline-block; transition: transform 0.3s ease; }
+        .image-cta-container:hover { transform: scale(1.08); }
+        .clickable-thumb { width: 130px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); overflow: hidden; display: block; border: 4px solid white; }
+        .clickable-thumb img { width: 100%; display: block; }
+        
+        .click-badge { 
+            position: absolute;
+            bottom: -10px; right: -100px; background-color: #d32f2f; color: white; padding: 8px 14px; 
+            border-radius: 20px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+            pointer-events: none; white-space: nowrap;
+        }
+
+        .waste-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; width: 100%; }
+        
+        .grid-item { 
+            display: flex;
+            align-items: center; text-decoration: none; color: #444; border-radius: 10px; 
+            overflow: hidden; border: 1px solid rgba(0,0,0,0.05); transition: all 0.2s ease;
+            background-color: white;
+        }
+
+        .icon-sq { 
+            width: 50px;
+            height: 50px; display: flex; align-items: center; justify-content: center; 
+            color: white; font-size: 1.2rem; flex-shrink: 0;
+        }
+
+        .grid-item:nth-child(4n+1) .icon-sq { background-color: var(--color-1); }
+        .grid-item:nth-child(4n+2) .icon-sq { background-color: var(--color-2); }
+        .grid-item:nth-child(4n+3) .icon-sq { background-color: var(--color-3); }
+        .grid-item:nth-child(4n+4) .icon-sq { background-color: var(--color-4); }
+
+        .label-text { padding: 0 12px; font-size: 0.85rem; font-weight: 600; flex-grow: 1; }
+        .arrow-icon { padding-right: 12px; color: rgba(0,0,0,0.1); font-weight: bold; }
+
+        /* 3. IMPACT BULLETIN BOARD SECTION */
+        .impact-container {
+            background-color: #fcfdfc;
+            background-image: radial-gradient(#d0e0d0 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            border-radius: 40px;
+            margin: 40px auto;
+            padding: 70px 30px;
+            max-width: 1150px;
+            border: 2px dashed #e0e0e0;
+        }
+
+        .top-bar { text-align: center; margin-bottom: 50px; }
+        .headline { font-size: 2.8rem; color: var(--accent-color); font-weight: 800; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 35px; }
+        
+        .stat-card { 
+            background: white; padding: 40px 20px; border-radius: 5px; 
+            text-align: center; position: relative; box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease; border: 1px solid #eee;
+        }
+
+        .stat-card::before {
+            content: ''; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 25px; background: rgba(129, 199, 132, 0.4); border-radius: 2px; z-index: 10;
+        }
+
+        .stat-card:nth-child(1) { transform: rotate(-1.5deg); }
+        .stat-card:nth-child(2) { transform: rotate(1deg); }
+        .stat-card:nth-child(3) { transform: rotate(-1deg); }
+        .stat-card:nth-child(4) { transform: rotate(2deg); }
+
+        .stat-card:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            box-shadow: 12px 12px 0px rgba(46, 125, 50, 0.1);
+            z-index: 20;
+        }
+
+        .stat-number { font-size: 2.6rem; font-weight: 900; color: var(--text-color); display: block; margin-bottom: 8px; white-space: nowrap; }
+        .stat-label { font-size: 0.95rem; color: #555; font-weight: 600; line-height: 1.4; }
+        .stat-bg-icon { font-size: 3rem; display: block; margin-bottom: 15px; }
+
+.impact-source {
+    text-align: right;
+    margin-top: 30px;
+    font-size: 0.85rem;
+    color: #777;
+    font-style: italic;
+}
+
+.impact-source a {
+    color: #2e7d32; /* Using your primary green */
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.impact-source a:hover {
+    color: #1b5e20; /* Darker green on hover */
+}
+
+/* Ensure it looks good on mobile */
+@media (max-width: 600px) {
+    .impact-source {
+        text-align: center;
+    }
+}
+
+        /* 4. ALTERNATING FEATURES WITH GREEN BG */
+        .alternating-features { 
+            display: flex; flex-direction: column; gap: 60px; background-color: var(--banner-bg); 
+            padding: 60px 40px; border-radius: 30px; max-width: 1100px; margin: 40px auto;
+        }
+        
+        .feature-row { display: flex; align-items: center; gap: 80px; }
+        .feature-row:nth-child(even) { flex-direction: row-reverse; }
+        .feature-text { flex: 1; }
+        .feature-text h3 { font-size: 2rem; color: var(--accent-color); margin-bottom: 15px; font-weight: 700; }
+        .feature-text p { font-size: 1.1rem; color: #555; margin-bottom: 30px; }
+        .feature-image-container { flex: 1; height: 380px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background-color: white; }
+        .feature-image-container img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .btn-secondary { display: inline-block; padding: 12px 30px; border: 2px solid var(--accent-color); color: var(--accent-color); text-decoration: none; font-weight: 700; border-radius: 50px; transition: 0.3s; background-color: white; }
+        .btn-secondary:hover { background-color: var(--accent-color); color: white; }
+
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 3.2rem; }
+            .waste-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-row, .feature-row:nth-child(even) { flex-direction: column; text-align: center; gap: 40px; }
+            .alternating-features { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">OurCycle</a>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">Explore &darr;</button>
+                <div class="dropdown-content">
+                    <a href="Ourcycle_Masterlist.html">Disposal Guide</a>
+                    <a href="Ourcycle_whysort.html">Impact of Sorting</a>
+                    <a href="Ourcycle_journey.html">Journey of Waste</a>
+                    <a href="Ourcycle_communityresource_FINAL.html">Community Resources</a>
+                    <a href="Ourcycle_events.html">Community Events</a>
+                    <a href="Ourcycle_upcycle.html">Fun Upcycling Projects</a>
+                </div>
+            </div>
+            <a href="Ourcycleaboutus.html">About Us</a>
+        </div>
+    </div>
+</nav>
+
+    <header class="hero">
+        <h1>OurCycle</h1>
+        <p>Turning Daily Choices into Climate Solutions</p>
+    </header>
+
+    <section class="selection-section">
+        <div class="selection-wrapper">
+            <div class="selection-header">
+                <div class="project-context">
+                  <span class="program-line">
+    A <a href="https://crls.cpsd.us/" target="_blank" rel="noopener noreferrer">Cambridge Rindge and Latin</a> Student Project | 
+    <a href="https://lti.mit.edu/home" target="_blank" rel="noopener noreferrer">MIT Leadership Training Program</a>
+</span>
+                    <p class="individual-summary">
+                        OurCycle is an independent initiative created to help our neighbors 
+                        navigate Cambridge's recycling and composting systems for a sustainable, zero-waste future.
+                    </p>
+                    <a href="Ourcycleaboutus.html" class="about-link">Learn more about our mission &rarr;</a>
+                </div>
+
+                <h2 class="selection-promo-text">Which bin should I use?</h2>
+                <div class="image-cta-container">
+                    <a href="https://www.cambridgema.gov/Departments/publicworks/getridofitright" target="_blank" class="clickable-thumb">
+                        <img src="Ourcycle_homepage_Images/getridright.jpg" alt="Waste Guide">
+                    </a>
+                    <div class="click-badge">Confused? Visit City's "Get Rid Of IT RIGHT" TOOL </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <h2 style="font-size: 2rem; color: var(--accent-color);">The Disposal Guide</h2>
+                <p class="selection-subtext">Select a category to view rules and local resources.</p>
+            </div>
+
+            <div class="waste-grid">
+                <a href="Ourcycle_Masterlist.html#paper" class="grid-item"><div class="icon-sq">📄</div><div class="label-text">Paper & Cardboard</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#shredding" class="grid-item"><div class="icon-sq">✂️</div><div class="label-text">Shredded Paper</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#plastics" class="grid-item"><div class="icon-sq">🥤</div><div class="label-text">Plastics</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#film" class="grid-item"><div class="icon-sq">🎞️</div><div class="label-text">Plastic Film</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#glass" class="grid-item"><div class="icon-sq">🍾</div><div class="label-text">Glass</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#metal" class="grid-item"><div class="icon-sq">🥫</div><div class="label-text">Metal</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#batteries" class="grid-item"><div class="icon-sq">🔋</div><div class="label-text">Batteries</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#electrical" class="grid-item"><div class="icon-sq">⚡</div><div class="label-text">Electrical Waste</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#electronics" class="grid-item"><div class="icon-sq">💻</div><div class="label-text">Electronic Waste</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#mercury" class="grid-item"><div class="icon-sq">💡</div><div class="label-text">Mercury & Bulbs</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#cooking-oil" class="grid-item"><div class="icon-sq">🍳</div><div class="label-text">Cooking Oil</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#medical" class="grid-item"><div class="icon-sq">💊</div><div class="label-text">Medical & Sharps</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#hazardous" class="grid-item"><div class="icon-sq">⚠️</div><div class="label-text">Hazardous Waste</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#clothes" class="grid-item"><div class="icon-sq">👕</div><div class="label-text">Clothes & Textiles</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#bulky" class="grid-item"><div class="icon-sq">🏠</div><div class="label-text">Bulky Items</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#moving" class="grid-item"><div class="icon-sq">📦</div><div class="label-text">Moving Out</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#oil" class="grid-item"><div class="icon-sq">🛢️</div><div class="label-text">Used Motor Oil</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#tires" class="grid-item"><div class="icon-sq">◎</div><div class="label-text">Tires</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#holiday" class="grid-item"><div class="icon-sq">🎄</div><div class="label-text">Holiday/Seasonal</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#specialty" class="grid-item"><div class="icon-sq">✨</div><div class="label-text">Specialty Drop-Off</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#reuse" class="grid-item"><div class="icon-sq">🔄</div><div class="label-text">Reuse & Donation</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#food" class="grid-item"><div class="icon-sq">🍎</div><div class="label-text">Food Scraps</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#yard" class="grid-item"><div class="icon-sq">🌿</div><div class="label-text">Yard Waste</div><div class="arrow-icon">→</div></a>
+                <a href="Ourcycle_Masterlist.html#trash" class="grid-item"><div class="icon-sq">🗑️</div><div class="label-text">Remaining Trash</div><div class="arrow-icon">→</div></a>
+            </div>
+        </div>
+    </section>
+
+    <main class="impact-container">
+        <div class="top-bar">
+            <h2 class="headline">Together We Can Make Cambridge Greener!</a></h2>
+        </div>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-bg-icon">📉</span>
+                <span class="stat-number">36%</span>
+                <span class="stat-label">Trash reduction in Cambridge since 2008</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-bg-icon">⏬</span>
+                <span class="stat-number">11%→4% </span>
+                <span class="stat-label">Reduction in contamination of waste streams from 2018 to 2020, saving the city $90,000 per year</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-bg-icon">🚛</span>
+                <span class="stat-number">14 lbs</span>
+                <span class="stat-label">Weekly trash generated by one house in Cambridge</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-bg-icon">♻️</span>
+                <span class="stat-number">55%</span>
+                <span class="stat-label">of waste from residential trash bins in Cambridge can be diverted through other methods.</span>
+            </div>
+        </section>
+
+<!-- NEW SOURCE LINE -->
+    <div class="impact-source">
+        Source: <a href="https://www.cambridgema.gov/-/media/Files/publicworksdepartment/recyclingandrubbish/zerowastemasterplan/zerowastemasterplan2.pdf" 
+           target="_blank" 
+           rel="noopener noreferrer">City's Zero Waste Master Plan 2.0</a>
+    </div>
+
+    </main>
+
+    <section class="alternating-features">
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Why Sorting Matters</h3>
+                <p>Proper sorting is the foundation of a sustainable city. By separating your waste correctly, you ensure materials are processed efficiently and stay out of our landfills.</p>
+                <a href="Ourcycle_whysort.html" class="btn-secondary">FEED &rarr;</a>
+            </div>
+            <div class="feature-image-container"><img src="Ourcycle_homepage_Images/sorting.jpg" alt="Sorting"></div>
+        </div>
+
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Journey of Waste</h3>
+                <p>Ever wonder where your trash goes? Trace the path of your waste from the curb to the processing facility and see the impact of your sorting habits.</p>
+                <a href="Ourcycle_journey.html" class="btn-secondary">SEE THE PATH &rarr;</a>
+            </div>
+            <div class="feature-image-container"><img src="Ourcycle_homepage_Images/waste-journey.jpg" alt="Journey of Waste"></div>
+        </div>
+
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Community Resources for Upcycling</h3>
+                <p>Cambridge offers numerous official drop-off points managed by the city and various nonprofits. In addition, Cambridge is home to many resident-led sharing hubs.</p>
+                <a href="Ourcycle_communityresource_FINAL.html" class="btn-secondary">LEARN MORE &rarr;</a>
+            </div>
+            <div class="feature-image-container"><img src="Ourcycle_homepage_Images/resources.jpg" alt="Resources"></div>
+        </div>
+
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Community Sustainability Events</h3>
+                <p>Stay up-to-date with City community events or join local clean-up events.</p>
+                <a href="Ourcycle_events.html" class="btn-secondary">FIND AN EVENT &rarr;</a>
+            </div>
+            <div class="feature-image-container"><img src="Ourcycle_homepage_Images/events.jpg" alt="Events and Feedback"></div>
+        </div>
+
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Fun Upcycling Resources</h3>
+                <p>Discover creative ways to give your old items a new life! From DIY crafts to sustainable lifestyle tips, explore resources that make upcycling easy and fun.</p>
+                <a href="Ourcycle_Upcycle.html" class="btn-secondary">EXPLORE &rarr;</a>
+            </div>
+            <div class="feature-image-container"><img src="Ourcycle_homepage_Images/Upcycling.jpg" alt="Fun Upcycling Resources"></div>
+        </div>
+    </section>
+
+</body>
+</html>

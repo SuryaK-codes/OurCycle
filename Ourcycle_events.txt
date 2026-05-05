@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurCycle | Community Events</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2E7D32;
+            --accent-green: #81C784;
+            --light-bg: #F1F8E9; /* Mint/Sage Background */
+            --card-bg: #FFFFFF; 
+            --text-dark: #1B5E20;
+            --accent-color: #2e7d32;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-logo { font-size: 1.5rem; font-weight: 800; color: var(--accent-color); text-decoration: none; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a, .dropbtn {
+            text-decoration: none; color: #555; font-weight: 600; font-size: 0.95rem; 
+            background: none; border: none; cursor: pointer; font-family: inherit; padding: 10px 0;
+        }
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-content {
+            display: none; position: absolute; background-color: white; min-width: 240px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.15); border-radius: 8px; z-index: 1001;
+            top: 100%; left: 0; overflow: hidden; border: 1px solid #eee;
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a { color: #333; padding: 12px 16px; display: block; border-bottom: 1px solid #f0f0f0; }
+        .dropdown-content a:hover { background-color: #f4f9f4; color: var(--accent-color); }
+
+        /* --- BANNER --- */
+        .banner {
+            text-align: center;
+            color: white;
+            padding: 120px 20px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Ourcycle_events_images/Ourcycle_events_img1.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            backdrop-filter: blur(1px);
+        }
+        .banner h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; }
+
+        /* --- CONTENT STRUCTURE --- */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px 80px;
+        }
+
+        .section-header {
+            margin: 40px 0 20px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 5px;
+        }
+
+        .sub-description {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        /* --- THE TABS/GRID --- */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .event-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            border-color: var(--accent-green);
+        }
+
+        .event-card .icon { font-size: 1.5rem; }
+
+        .event-card span.label {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        /* --- HELPFUL RESOURCES SECTION --- */
+        .resources-box {
+            background: #E8F5E9;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: -20px;
+            margin-bottom: 40px;
+            border: 1px dashed var(--primary-green);
+        }
+
+        .resources-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-green);
+        }
+
+        .resource-link {
+            display: block;
+            color: var(--text-dark);
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .resource-link:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">OurCycle</a>
+            <div class="nav-menu">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Explore &darr;</button>
+                    <div class="dropdown-content">
+                        <a href="Ourcycle_Masterlist.html">Disposal Guide</a>
+                        <a href="Ourcycle_whysort.html">Impact of Sorting</a>
+                        <a href="Ourcycle_journey.html">Journey of Waste</a>
+                        <a href="Ourcycle_communityresource_FINAL.html">Community Resources</a>
+                        <a href="Ourcycle_events.html">Community Events</a>
+                        <a href="Ourcycle_upcycle.html">Fun Upcycling Projects</a>
+                    </div>
+                </div>
+                <a href="Ourcycleaboutus.html">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="banner">
+        <h1>Community Events</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="section-header">
+            <h2>City of Cambridge Sustainability Events</h2>
+            <p class="sub-description">Responsible waste management services provided by the city:</p>
+        </div>
+
+        <div class="event-grid">
+
+                <a href="https://www.cambridgema.gov/services/householdhazardouswastedisposal" class="event-card" target="_blank">
+                <span class="icon">⚠️</span><span class="label">Hazardous Waste Collection</span> 
+            </a>
+            <a href="https://seeclickfix.com/web_portal/WacEfzPx7m29dubrPfXEEwCV/report/category/20754/location" class="event-card" target="_blank">
+                <span class="icon">🗑️</span><span class="label">Report Overflowing Public Trash</span>
+            </a>
+            <a href="https://www.cambridgema.gov/Departments/publicworks/news/2026/03/dpwlaunchespopuprecycleeventsforhardtorecyclematerials" class="event-card" target="_blank">
+                <span class="icon">📦</span><span class="label">Pop-up Hard to Recycle Events</span>
+            </a>
+            <a href="https://www.cambridgema.gov/Services/documentshredding" class="event-card" target="_blank">
+                <span class="icon">📄</span><span class="label">Free Document Shredding</span>
+            </a>
+            <a href="https://www.cambridgema.gov/Departments/publicworks/Calendar/2026/04/18/earthdayfinishedcompostgiveaway" class="event-card" target="_blank">
+                <span class="icon">♻️</span><span class="label">Free Compost Giveaway</span>
+            </a>
+            <a href="https://www.cambridgema.gov/Departments/cambridgepubliclibrary/calendar/2026/05/09/fixitclinicmain" class="event-card" target="_blank">
+                <span class="icon">🔧</span><span class="label">Fixit Clinic at Main Library</span>
+            </a>
+        </div>
+
+        <div class="resources-box">
+            <h3>Helpful Resources:</h3>
+            <a href="https://www.cambridgema.gov/Departments/publicworks/Calendar" class="resource-link" target="_blank">-> Check the DPW Calendar for upcoming event dates.</a>
+            <a href="https://www.cambridgema.gov/Services/recyclingcenter" class="resource-link" target="_blank">-> Use the Address Search Tool for local collection schedules.</a>
+        </div>
+
+        <div class="section-header">
+            <h2>Local Clean-Up Initiatives</h2>
+            <p class="sub-description">Connect with neighbors and act for the planet through volunteer-led efforts:</p>
+        </div>
+
+        <div class="event-grid">
+            <a href="https://www.crwa.org/events/cleanup" class="event-card" target="_blank">
+                <span class="icon">🌊</span><span class="label">Charles River Clean-Up</span>
+            </a>
+            <a href="https://magazinebeach.org/events/" class="event-card" target="_blank">
+                <span class="icon">🌳</span><span class="label">Magazine Beach Events</span>
+            </a>
+            <a href="https://keepmassbeautiful.org/news-events/events-calendar.html" class="event-card" target="_blank">
+                <span class="icon">🗺️</span><span class="label">Keep Mass Beautiful Events</span>
+            </a>
+            <a href="https://ideaexchange.libnet.info/events?term=Clean-up&r=thismonth" class="event-card" target="_blank">
+                <span class="icon">📚</span><span class="label">CPL Clean-Up Events</span>
+            </a>
+            <a href="https://www.eventbrite.com/d/ma--cambridge/cleanup/" class="event-card" target="_blank">
+                <span class="icon">🎟️</span><span class="label">Eventbrite: Cambridge Clean-Up</span>
+            </a>
+            <a href="https://finditcambridge.org/services/public-benefits-and-community-assistance?f%5B0%5D=service%3A333" class="event-card" target="_blank">
+                <span class="icon">🔍</span><span class="label">Find-it-Cambridge</span>
+            </a>
+            <a href="https://www.cambridgema.gov/Departments/PeaceCommission/MeetYourNeighborDay" class="event-card" target="_blank">
+                <span class="icon">🤝</span><span class="label">Meet Your Neighbor Day</span>
+            </a>
+            <a href="https://www.cambridgema.gov/iwantto/applyforablockpartypermit" class="event-card" target="_blank">
+                <span class="icon">🚧</span><span class="label">Organize a Cleanup Block Party</span>
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

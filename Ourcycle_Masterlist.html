@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OurCycle Master Guide - Cambridge Edition</title>
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --accent-blue: #0277bd;
+            --yuck-red: #d32f2f;
+            --bg-light: #f9f9f9;
+            --card-white: #ffffff;
+            --text-main: #333;
+        }
+
+        html { 	scroll-behavior: smooth;
+		scroll-padding-top: 100px; /* This prevents the Navbar from covering titles */
+		}
+
+	/* --- CLEAN & STABLE NAVBAR --- */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0; /* Tightened padding */
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.nav-menu { 
+    display: flex; 
+    align-items: center; 
+    gap: 30px; 
+}
+
+/* Base link styles */
+.nav-menu a, .dropbtn {
+    text-decoration: none; 
+    color: #555; 
+    font-weight: 600; 
+    font-size: 0.95rem; 
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 10px 0; /* Vertical padding creates a bigger hover area */
+}
+
+.nav-menu a:hover, .dropdown:hover .dropbtn { 
+    color: var(--accent-color); 
+}
+
+/* DROPDOWN BOX */
+.dropdown { 
+    position: relative; 
+    display: inline-block; 
+}
+
+.dropdown-content {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    background-color: white;
+    min-width: 240px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    border-radius: 8px;
+   /* z-index: 1001; */
+    z-index: 9999
+    top: 100%; /* Sits exactly at the bottom of the button area */
+    left: 0;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+/* This makes the menu appear and STAY because there is no gap */
+.dropdown:hover .dropdown-content {
+    display: block;
+    visibility: visible;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: 500;
+}
+
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { 
+    background-color: #f4f9f4; 
+    color: var(--accent-color); 
+}
+
+/* Fix for sticky header overlap */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: #F1F8E9; /* Mint Background */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+/* 1. Disable smooth scrolling specifically for the Masterlist */
+html {
+    scroll-behavior: auto !important; /* Forces instant teleportation */
+}
+
+/* 2. Create the 'landing zone' so the navbar doesn't hide your titles */
+[id] {
+    scroll-margin-top: 100px; /* Adjust this to match your navbar height */
+}
+
+
+
+       header {
+    text-align: center;
+    /* This creates a blue "tint" over the image */
+    background-image: 
+        linear-gradient(rgba(20, 54, 22, 0.5), rgba(20, 54, 22, 0.5)), 
+        url('OurCycle_MasterList_IMAGES/MasterListBannerimage.png');
+    background-size: cover;
+    background-position: center;
+/* 1. SET THE FIXED HEIGHT HERE */
+    height: 160px;
+    color: #1b5e20;
+    padding: 80px 20px;
+    border-bottom: 3px solid var(--primary-green);
+}
+
+.pdf-link-bar {
+    background: transparent; /* Remove the old bar look */
+    margin-top: -80px; /* Pull it up closer to the top */
+    margin-bottom: 20px;
+}
+
+.pdf-link-bar a {
+    background-color: #d8853a; /* A fun, energetic orange to stand out */
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px; /* Makes it a pill shape */
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.pdf-link-bar a:hover {
+    transform: translateY(-3px); /* Makes it "pop" when hovered */
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+    background-color: #f57c00;
+}
+
+header h1 {
+    /* 1. Combine all margins into one line: top (100px), left/right (0), bottom (10px) */
+    margin: 10px 0 10px 0; 
+    
+    font-size: 4.0rem; 
+    font-weight: 900; 
+    color: #FFFFFF;
+    letter-spacing: -1px; 
+    line-height: 1.1;
+}
+
+header p {
+    margin-top: 10px; /* Lowers the text */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Rounded/Clean fonts */
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9); /* Soft white so it doesn't compete with the H1 */
+}
+
+header p span {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    color: #e1f5fe; /* A very light blue to match the theme */
+}
+
+header p a {
+    color: #f5fff5;
+    text-decoration: none;
+    border-bottom: 2px dashed #2e7d32; /* Fun dashed underline */
+    padding-bottom: 2px;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+header p a:hover {
+    color: #ff9800;
+    border-bottom-color: #ff9800;
+}
+
+        .section-card {
+   	 	background: var(--card-white);
+    		border-radius: 12px;
+    		padding: 30px;
+    		margin-bottom: 40px;
+    		box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    		border-left: 8px solid var(--primary-green);
+    		scroll-margin-top: 100px; /* Matches the html padding for safety */
+	}
+
+ 	.sub-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .sub-image-space {
+            width: 100%;
+            max-width: 450px;
+            height: 180px;
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            margin: 20px auto; 
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list { list-style: none; padding: 0; }
+        .feature-item { margin-bottom: 15px; padding-left: 40px; position: relative; }
+        
+        .feature-item strong { display: inline; font-size: 1.1rem; margin-right: 5px; }
+
+        /* Icons */
+        .icon-fun::before { content: '🎉'; position: absolute; left: 0; font-size: 1.4rem; }
+        .icon-yuck::before { content: '🤢'; position: absolute; left: 0; font-size: 1.4rem; }
+        .icon-tip::before { content: '💡'; position: absolute; left: 0; font-size: 1.4rem; }
+        .icon-cambridge::before { content: '🏢'; position: absolute; left: 0; font-size: 1.4rem; }
+        .icon-dyk::before { content: '🧐'; position: absolute; left: 0; font-size: 1.4rem; }
+
+        .tire-circle {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 4px solid #333;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .yuck-text { color: var(--yuck-red); }
+        .cambridge-text { color: var(--accent-blue); font-weight: bold; }
+        .internal-link { color: var(--primary-green); font-weight: bold; text-decoration: underline; }
+
+        .hhw-box {
+            background: #e1f5fe; 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin-top: 10px; 
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .schedule-links {
+            margin-top: 10px;
+            padding-left: 10px;
+        }
+
+        .schedule-links p {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+.back-home {
+    text-align: right; 
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #eee; 
+}
+
+.back-home a {
+    font-size: 0.85rem;
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-home a:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+        footer { text-align: center; padding: 50px; background: #1a4a15; color: white; margin-top: 60px; }
+        .footer-link { color: #a5d6a7; text-decoration: none; font-weight: bold; }
+        a { color: var(--accent-blue); }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo"><span style="color: green;">OurCycle</span> </a>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <button class="dropbtn">Explore &darr;</button>
+                <div class="dropdown-content">
+                    <a href="Ourcycle_Masterlist.html">Disposal Guide</a>
+                    <a href="Ourcycle_whysort.html">Impact of Sorting</a>
+                    <a href="Ourcycle_journey.html">Journey of Waste</a>
+                    <a href="Ourcycle_communityresource_FINAL.html">Community Resources</a>
+                    <a href="Ourcycle_events.html">Community Events</a>
+                    <a href="Ourcycle_upcycle.html">Fun Upcycling Projects</a>
+                </div>
+            </div>
+            <a href="Ourcycleaboutus.html">About Us</a>
+        </div>
+    </div>
+</nav>
+
+<header>
+    <!-- PDF link is at the top -->
+    <div class="pdf-link-bar">
+        <a href="OurCycle_MasterList_IMAGES/RecycleSmartInfographic.pdf" target="_blank">📂 View Official RecycleSmartMA PDF Guide</a>
+    </div>
+
+<!-- Add these breaks to create a gap -->
+    <br><br>
+    <!-- Title is in the middle -->
+    <h1>🌍 The "OurCycle" Master Guide</h1>
+
+<!-- Add these breaks to create a gap -->
+    <br><br>
+<!-- Wisdom links are at the bottom -->
+    <p>
+        <span>Sources:</span>  &nbsp; &nbsp;
+        <a href="https://www.epa.gov/recycle" target="_blank" rel="noopener noreferrer">EPA Wisdom</a> &nbsp;+&nbsp; 
+        <a href="https://recyclesmartma.org/" target="_blank" rel="noopener noreferrer">RecycleSmartMA Rules</a> &nbsp;+&nbsp; 
+        <a href="https://www.cambridgema.gov/" target="_blank" rel="noopener noreferrer">Cambridge Special Sauce</a>
+    </p>
+</header>
+
+<div class="container">
+
+    <section class="section-card" id="paper">
+        <h2>📄 1. Paper & Cardboard: The Comeback Kings</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i1.png" alt="Paper and Cardboard" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Flattening boxes is a great stress reliever, and it's highly efficient!</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Recycling one ton of paper saves 17 trees, 7,000 gallons of water, and enough energy to power a home for six months.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> No greasy pizza boxes or coffee cups in the blue bin—but these <a href="#food" class="internal-link">can be composted!</a></div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Remove plastic liners from cereal boxes first. Staples are fine; sorting machines handle them.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Nest flattened boxes inside one larger box if your bin is full. Do not use string or twine.</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="shredding">
+        <h2>✂️ 2. Shredded Paper: Secure Destruction</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i2.png" alt="Shredded Paper" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Watch your sensitive documents get pulverized on the spot at city events!</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Once paper is shredded, fibers become too short for high-quality paper, so it usually becomes tissue paper or egg cartons.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Small shreds jam optical scanners and fall through machinery cracks at the sorting plant.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Compost small amounts of shredded paper in your green bin! It's a great "brown" material for soil.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Use <a href="https://www.cambridgema.gov/Services/documentshredding" target="_blank">official City shred events</a> to dispose of sensitive files safely.</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="plastics">
+        <h2>🥤 3. Plastics: The Identity Crisis</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i3.png" alt="Plastics" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> You get to keep the caps ON! Modern tech separates the cap plastic from the bottle plastic later.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Only about 9% of all plastic ever made has been recycled. Focus on "bottles, jars, tubs, and jugs."</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> NO PLASTIC BAGS! Never bag recyclables; bags tangle the gears and stop the entire plant.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Empty and rinse containers—"spoon clean" is good enough. Labels are fine to leave on.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Black plastic is TRASH, even hard containers. Scanners cannot see black pigment against the belts.</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="film">
+        <h2>🎞️ 4. Plastic Film: The Great Tanglers</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i4.png" alt="Plastic Film" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> If you can poke your thumb through it and it stretches, it's film! These become composite lumber for decks.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Plastic film is the #1 cause of machinery downtime. Workers have to climb in and manually cut them out.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> These wrap around plant rotors and shut down the whole facility.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Pop "air pillows" from packages to save space in your drop-off bag.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Take these to grocery store collection bins or the <strong>Recycling Center at 147 Hampshire St</strong> (<a href="https://www.cambridgema.gov/Services/recyclingcenter" target="_blank">View Hours</a>).</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="glass">
+        <h2>🍾 5. Glass: The Infinite Loop</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i5.png" alt="Glass" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Glass can be recycled forever without losing quality. A jar can return to a shelf in 30 days.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Using recycled glass (cullet) consumes 40% less energy than making glass from raw sand.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Broken window glass or mirrors belong in the trash. They have different melting points.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Metal caps should be left ON the glass jars for sorting.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Blue, green, clear, and brown glass are all accepted curbside.</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="metal">
+        <h2>🥫 6. Metal: The Recycling MVP</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i6.png" alt="Metal" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Aluminum is the most valuable material in your bin. Recycling one can runs a TV for 3 hours!</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> About 75% of all aluminum ever produced is still in use today because it is so profitable to recycle.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> No scrap metal like pipes or hangers in the blue bin. They damage the sorting belts.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Ball up clean aluminum foil to the size of a fist so it doesn't blow away or get caught.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Take pans, pots, and hangers to the <strong>Recycling Center at 147 Hampshire St</strong> (<a href="https://www.cambridgema.gov/Services/recyclingcenter" target="_blank">View Hours</a>).</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="batteries">
+        <h2>🔋 7. Batteries: The Spicy Little Nuggets</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i7.png" alt="Batteries" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Handling these correctly prevents literal truck fires and protects the environment from heavy metals.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> If lithium batteries are punctured by a truck compactor, they can undergo "thermal runaway" and start fires.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Lithium-ion and rechargeable batteries are dangerous in trash. Never hide them in the garbage!</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Tape the ends of 9V and lithium batteries with clear tape to prevent sparking.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Alkaline batteries go in TRASH. All others go to the <strong>Recycling Center at 147 Hampshire St</strong> (<a href="https://www.cambridgema.gov/Services/recyclingcenter" target="_blank">View Hours</a>).</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="electrical">
+        <h2>⚡ 8. Electrical Waste: The Power Players</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i8.png" alt="Electrical Waste" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Your old toaster can become a new bike frame! Small appliances are full of high-quality metals.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Electrical waste is the fastest-growing waste stream; much of it contains 100% recyclable copper wiring.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Power cords act like "tanglers." If a cord gets loose in a blue bin, it acts like a whip inside the machinery.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> If the item still works, try "Buy Nothing" groups first! Reuse is always better.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Small appliances and loose power cords go in the Electronics Shed at the <strong>Recycling Center at 147 Hampshire St</strong> (<a href="https://www.cambridgema.gov/Services/recyclingcenter" target="_blank">View Hours</a>).</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="electronics">
+        <h2>💻 9. Electronic Waste: The Data Keepers</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i9.png" alt="Electronic Waste" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Donation is great! Check local retailers like Staples for trade-ins.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> A single iPhone contains about 0.034g of gold and 0.34g of silver.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Monitors and screens contain mercury and lead and are never allowed in the trash.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Wipe your data! For phones, use "Factory Reset." Physically destroy hard drives if needed.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Computers, laptops, and monitors are BANNED from curbside trash. Bring them to the <strong>Recycling Center at 147 Hampshire St</strong> (<a href="https://www.cambridgema.gov/Services/recyclingcenter" target="_blank">View Hours</a>).</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="mercury">
+        <h2>💡 10. Mercury & Light Bulbs: Handle with Care</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i10.png" alt="Light Bulbs" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> You’re keeping toxic mercury vapors out of our local air and water.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> One fluorescent light contains enough mercury to contaminate up to 7,000 gallons of water.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Broken fluorescent lights release mercury. Vent the room immediately and never vacuum!</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Modern LEDs and incandescent bulbs are mercury-free and safe for the regular bin.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> 
+                <strong>Trash:</strong> Place LEDs and incandescents in regular trash (wrapped). 
+                <strong>Recycle:</strong> Bring all fluorescent lights to the <strong>Recycling Center at 147 Hampshire St</strong> (<a href="https://www.cambridgema.gov/Services/recyclingcenter" target="_blank">View Hours</a>).
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card" id="cooking-oil">
+        <h2>🍳 11. Cooking Oil: The Drain Protector</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i11.png" alt="Cooking Oil" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> You’re helping create renewable energy (biodiesel).</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Grease hardens like concrete in sewer systems, creating "fatbergs" that cause backups.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Never pour grease down the drain! It is the leading cause of local sewer overflows.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> For small grease amounts, wipe the pan with a paper towel and toss it in your Green Bin (Compost).</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> For large liquid oil amounts, cool, seal in a container, and place in the trash.</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="medical">
+        <h2>💊 12. Medical & Sharps: The Safety First Zone</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i12.png" alt="Medical and Sharps" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Drop off meds anonymously—no labels or IDs needed, protecting your privacy.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Flushing medications sends them into the Charles River, harming fish populations.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Never flush meds or toss needles in trash. This creates "needle stick" risks for workers.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> No red biohazard box? Use a thick plastic bottle (like laundry detergent) and tape it shut.</div>
+            <div class="feature-item icon-cambridge">
+                <strong class="cambridge-text">Cambridge Locations:</strong> 
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>Meds & Sharps:</strong> <a href="https://maps.google.com/?q=125+Sixth+St+Cambridge+MA" target="_blank">Police Dept Lobby (125 Sixth St)</a> - 24/7.</li>
+                    <li><strong>Harvard Sq Kiosk:</strong> <a href="https://maps.google.com/?q=Church+St+at+Mass+Ave+Cambridge+MA" target="_blank">Church St & Mass Ave</a> - Outdoor drop-box.</li>
+                    <li><strong>Porter Sq Kiosk:</strong> <a href="https://maps.google.com/?q=2029+Mass+Ave+Cambridge+MA" target="_blank">Porter Sq Fire House (2029 Mass Ave)</a> - Outdoor drop-box.</li>
+                    <li><strong>Central Square Area:</strong> Kiosks at:
+                        <br>• <a href="https://maps.google.com/?q=378+Mass+Ave+Cambridge+MA" target="_blank">378 Mass Ave</a> 
+                        <br>• <a href="https://maps.google.com/?q=628+Mass+Ave+Cambridge+MA" target="_blank">628 Mass Ave</a>
+                        <br>• <a href="https://maps.google.com/?q=Cambridge+City+Hall+MA" target="_blank">City Hall (Inman St side)</a>
+                        <br>• <a href="https://maps.google.com/?q=Green+St+Parking+Lot+8+Cambridge+MA" target="_blank">Green St (Parking Lot 8)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card" id="hazardous">
+        <h2>⚠️ 13. Household Hazardous Waste (HHW)</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i13.png" alt="Household Hazardous Waste" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Clearing these out makes your home safer and protects local groundwater.</div>
+            <div class="feature-item icon-dyk"><strong>What is HHW?</strong> Toxic/flammable items like Pesticides, Gasoline, and Propane Tanks.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> BANNED from regular trash. These cause chemical fires in trucks.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Bring proof of Cambridge residency! Email recycle@cambridgema.gov if bringing >25 gallons.</div>
+            <div class="feature-item icon-cambridge">
+                <strong class="cambridge-text">Cambridge Schedule:</strong> 
+                <div class="hhw-box">
+                    Collection events are seasonal. Check the official city calendar:<br><br>
+                    <a href="https://www.cambridgema.gov/Services/householdhazardouswastedisposal" target="_blank" style="font-weight: bold; color: var(--accent-blue);">📅 View Official Cambridge HHW Schedule</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card" id="clothes">
+        <h2>👕 14. Clothes & Textiles: The Second Chance Stylists</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i14.png" alt="Clothes and Textiles" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Almost 95% of all textiles—even ripped/stained ones—can be recycled!</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> The fashion industry is responsible for 10% of global carbon emissions.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Clean and Dry is the rule. Wet or moldy clothes ruin an entire bin.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Single shoes and lonely socks are accepted. Just bag them up.</div>
+            <div class="feature-item icon-cambridge">
+                <strong class="cambridge-text">Cambridge Rule:</strong> Textiles are BANNED from the trash in MA. 
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>For Recycling:</strong> <a href="https://www.helpsy.co/cambridgema" target="_blank">Helpsy Cambridge</a> or the <strong>Recycling Center at 147 Hampshire St</strong> (<a href="https://www.cambridgema.gov/Services/recyclingcenter" target="_blank">View Hours</a>).</li>
+                    <li><strong>For Donation:</strong> <a href="Ourcycle_communityresource_FINAL.html" target="_blank" style="font-weight: bold; color: var(--primary-green);">👉 Visit OurCycle Donation Page</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card" id="bulky">
+        <h2>🏠 15. Bulky Items: The Heavy Hitters</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i15.png" alt="Bulky Items" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Cambridge provides free weekly pickup for most large items like sofas.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> When collected, bulky wooden items are often processed to recover quality materials.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Sidewalk blocking is dangerous for strollers/wheelchairs. Limit to one piece per week.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Is it in good shape? Try donating it first!</div>
+            <div class="feature-item icon-cambridge">
+                <strong class="cambridge-text">Cambridge Rule:</strong> One furniture piece per week is free curbside. No appointment needed.
+                <br><br>
+                <a href="https://www.cambridgema.gov/Services/furnitureappliancelargeitemdisposal" target="_blank" style="font-weight: bold; color: var(--accent-blue);">📋 View Official Bulky Item Guidelines</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card" id="moving">
+        <h2>📦 16. Moving Out: The Fresh Start</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i16.png" alt="Moving Out" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Rehoming your gear helps a neighbor! A "Curb Alert" often clears a sidewalk in minutes.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Move-out weeks cause a massive spike in waste; plan 2 weeks early.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> "Wish-cycling" (leaving junk) can lead to landlord fines if items stay past trash day.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Use our <a href="Ourcycle_communityresource_FINAL.html" target="_blank">OurCycle Donation Page</a> to find charities.</div>
+            <div class="feature-item icon-cambridge">
+                <strong class="cambridge-text">Cambridge Rule:</strong> Certain items require a paid pickup:
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>Mattresses & Box Springs:</strong> $25.00 per piece.</li>
+                    <li><strong>Appliances:</strong> $20.00 per item (fridges, ACs).</li>
+                </ul>
+                
+                <div class="schedule-links">
+                    <p>📅 Schedule Pickup & Pay Fees:</p>
+                    <div style="margin-left: 15px;">
+                        • <a href="https://www.cambridgema.gov/Services/MattressRecycling" target="_blank" style="color: var(--accent-blue);">Mattress Pickup</a><br>
+                        • <a href="https://cambridgema.portal.opengov.com/categories/1101/record-types/6612" target="_blank" style="color: var(--accent-blue);">Large Items Pickup</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card" id="oil">
+        <h2>🛢️ 17. Used Oil: The Water Warrior</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i17.png" alt="Motor Oil" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Motor oil doesn't wear out—it just gets dirty and can be cleaned infinitely!</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> One gallon of oil can contaminate a million gallons of fresh water.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Never dump oil down the drain; it goes straight to the Charles River.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Never mix oil with paint or gas; it makes it unrecyclable.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Bring used motor oil to the <strong>Recycling Center at 147 Hampshire St</strong> (<a href="https://www.cambridgema.gov/Services/recyclingcenter" target="_blank">View Hours</a>) during HHW hours.</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="tires">
+        <h2><span class="tire-circle"></span>18. Tires: The Rubber Rebels</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i18.png" alt="Tires" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Old tires become playground surfaces and new asphalt!</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Tires are indestructible, making them a nightmare in landfills where they "float."</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Abandoned tires breed mosquitoes carrying West Nile.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Tire shops usually take old ones for a small fee when you buy new ones.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> Bring up to 4 tires/year (off-rim) to the <strong>Recycling Center at 147 Hampshire St</strong> (<a href="https://www.cambridgema.gov/Services/recyclingcenter" target="_blank">View Hours</a>).</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="holiday">
+        <h2>🎄 19. Holiday & Seasonal: The Festive Cleanup</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i19.png" alt="Holiday and Seasonal" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Your pumpkins and trees become clean energy and nutrient-rich soil!</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Holiday trees are chipped into mulch used in our city parks.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Tinsel and ornaments are "tanglers" and ruin mulch batches.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Feed unpainted pumpkins to the green bin (remove candles).</div>
+            <div class="feature-item icon-cambridge">
+                <strong class="cambridge-text">Cambridge Rule:</strong> Curbside tree collection runs the first 2 weeks of Jan. Trees must be bare. 
+                <a href="https://www.cambridgema.gov/Departments/publicworks/news/2023/01/curbsidechristmastreecollectionschedule" target="_blank" style="display:block; margin-top:5px; font-weight:bold; color:var(--accent-blue);">City's website for tree collection details</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card" id="specialty">
+        <h2>✨ 20. Specialty Drop-Offs: The "Recycling Center Only" List</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i20.png" alt="Specialty Dropoffs" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> The center is like a library for waste! Drop off rigid plastics, library books, and more. You can visit the center and go through the library and pick what you want to rehome.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> The center processes materials too difficult for curbside trucks.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Styrofoam peanuts go in trash. Only white block foam is accepted.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Check the <a href="https://www.cambridgema.gov/Departments/publicworks/getridofitright" target="_blank">"Get Rid of It Right" tool</a> before driving over.</div>
+            <div class="feature-item icon-cambridge"><strong class="cambridge-text">Cambridge Rule:</strong> <strong>Recycling Center at 147 Hampshire St</strong> (<a href="https://www.cambridgema.gov/Services/recyclingcenter" target="_blank">View Hours</a>). Resident ID required.</div>
+        </div>
+    </section>
+
+    <section class="section-card" id="reuse">
+        <h2>🔄 21. Reuse & Donation: Give it a Second Life</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i21.png" alt="Reuse and Donation" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Joining a "Buy Nothing" group save money and builds community.</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Reuse is ABOVE Recycling in the hierarchy; it takes much less energy.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> Don't donate broken items; charities pay high rates to trash junk.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Use the <a href="https://www.cambridgema.gov/Services/reducereuse" target="_blank">Cambridge Circular Economy Directory</a> to find repair shops.</div>
+            <div class="feature-item icon-cambridge">
+                <strong class="cambridge-text">Cambridge Rule:</strong> Use the <a href="https://www.cambridgema.gov/Departments/publicworks/getridofitright" target="_blank">city's search tool to find specific charity partners.</a> Or you can check our <a href="Ourcycle_communityresource_FINAL.html" target="_blank">OurCycle Donation Page</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card" id="food">
+        <h2>🍎 22. The Cambridge Special: Food Scraps! (Compost)</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i22.png" alt="Compost" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> Composting stops trash from smelling by keeping organics dry!</div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Cambridge scraps go to a digester that turns them into biogas energy.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> No produce stickers or rubber bands; these ruin fertilizer.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Greasy pizza boxes and coffee cups are welcome here!</div>
+            <div class="feature-item icon-cambridge">
+                <strong class="cambridge-text">Cambridge Rule:</strong> Curbside composting is mandatory for most buildings. 
+                <a href="https://www.cambridgema.gov/services/curbsidecomposting" target="_blank" style="font-weight: bold; color: var(--accent-blue);">Request your kit from DPW here.</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card" id="yard">
+        <h2>🌿 23. Yard Waste: The Soil Makers</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i23.png" alt="Yard Waste" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun">
+                <strong>The Fun Part:</strong> Residents get free finished compost twice a year from the city! 
+                <a href="https://www.cambridgema.gov/Departments/publicworks/calendar" target="_blank">Check the DPW Calendar for Earth Day/Fall giveaway dates.</a>
+            </div>
+            <div class="feature-item icon-dyk"><strong>Did You Know?</strong> Composting yard waste prevents methane—a potent greenhouse gas.</div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> No rocks, dirt, or sod. Branches larger than 3 feet or 4 inches in diameter are NOT accepted.</div>
+            <div class="feature-item icon-tip">
+                <strong>Pro-Tip:</strong> Bundle branches with string (max 3ft long) and place them next to your bin. 
+                <strong>Note:</strong> Entire cut-down trees are not accepted; hire a private hauler for tree removals.
+            </div>
+            <div class="feature-item icon-cambridge">
+                <strong class="cambridge-text">Cambridge Rule:</strong> Collection runs April 1 - Dec 31. 
+                <br>• <strong>Storm Damage:</strong> For fallen <em>City</em> tree branches, call DPW at 617-349-4800. 
+                <br>• <strong>Private Trees:</strong> Owners must break down branches to meet the 3ft bundle rule.
+            </div>
+        </div>
+    </section>
+
+    <section class="section-card" id="trash">
+        <h2>🗑️ 24. Remaining Trash: The Last Resort</h2>
+        <img src="OurCycle_MasterList_IMAGES/OurMasterList_i24.png" alt="Trash" class="sub-image">
+        <div class="feature-list">
+            <div class="feature-item icon-fun"><strong>The Fun Part:</strong> If you follow this guide, your trash bin should be nearly empty!</div>
+            <div class="feature-item icon-dyk">
+                <strong>Did You Know?</strong> Cambridge trash is sent to a Waste-to-Energy facility to create electricity. 
+                <a href="https://www.mass.gov/guides/municipal-waste-combustors#:~:text=There%20are%20five%20waste%2Dto,emissions%20of%20targeted%20air%20pollutants." target="_blank">Learn more about Massachusetts Municipal Combusters here.</a>
+            </div>
+            <div class="feature-item icon-yuck"><strong class="yuck-text">The Yuck Factor:</strong> No food scraps, chemicals, or recyclables. These items are literally "wasted" when they end up here.</div>
+            <div class="feature-item icon-tip"><strong>Pro-Tip:</strong> Double-check: could it be reused? If not, bag it securely to prevent litter.</div>
+            <div class="feature-item icon-cambridge">
+                <strong class="cambridge-text">Cambridge Rule:</strong> <strong>Only trash in city-issued trash cans will be picked up.</strong> 
+                <br>• <a href="https://www.cambridgema.gov/Departments/publicworks/Services/curbsidecollections" target="_blank" style="font-weight: bold; color: var(--accent-blue);">📅 View your Collection Schedule</a>
+                <br>• <a href="https://www.cambridgema.gov/Services/Recycling/MaterialsRequestForm" target="_blank">🛒 Order/Replace City Trash Cans here.</a>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>Still Unsure? Use the <a href="https://www.cambridgema.gov/Departments/publicworks/getridofitright" class="footer-link" target="_blank">Get Rid of It Right Tool</a></p>
+</footer>
+
+<script>
+    // This finds every section-card and adds the link automatically
+    document.querySelectorAll('.section-card').forEach(card => {
+        const backHomeDiv = document.createElement('div');
+        backHomeDiv.className = 'back-home';
+        backHomeDiv.innerHTML = '<a href="index.html">← Back to Home</a>';
+        card.appendChild(backHomeDiv);
+    });
+</script>
+
+</body>
+</html>
